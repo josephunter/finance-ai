@@ -46,6 +46,9 @@ export function AssetValueAnalytics({ asset, values }: AssetValueAnalyticsProps)
 
   return (
     <div className="space-y-6">
+      <h3 className="text-lg font-semibold tracking-tight text-foreground">
+        Value History
+      </h3>
       <MonthlyValueTable 
         data={monthlyData}
         inflationData={inflationData}

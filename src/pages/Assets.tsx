@@ -5,10 +5,11 @@ import { AssetList } from '@/components/assets/AssetList';
 import { AssetFilters } from '@/components/assets/AssetFilters';
 import { AddAssetDialog } from '@/components/assets/AddAssetDialog';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
+import { PageHeader } from '@/components/ui/page-header';
 
 export default function Assets() {
   const { user } = useAuth();
-  const { assets, loading, error, refreshAssets } = useAssets(user?.uid);
+  const { assets, loading, error, refetch } = useAssets(user?.uid);
   const {
     search,
     setSearch,
@@ -35,15 +36,13 @@ export default function Assets() {
   }
 
   return (
-    <div className="py-6 space-y-6">
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-2xl font-semibold text-gray-900">Assets</h1>
-          <p className="mt-1 text-sm text-gray-500">
-            Manage your assets and track their performance
-          </p>
-        </div>
-        <AddAssetDialog onAssetAdded={refreshAssets} />
+    <div className="space-y-6">
+      <div className="flex justify-between items-start">
+        <PageHeader
+          title="Assets"
+          description="Manage your assets and track their performance"
+        />
+        <AddAssetDialog onAssetAdded={refetch} />
       </div>
 
       <AssetFilters
@@ -57,7 +56,7 @@ export default function Assets() {
 
       <AssetList
         assets={filteredAssets}
-        onDelete={refreshAssets}
+        onDelete={refetch}
       />
     </div>
   );

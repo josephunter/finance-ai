@@ -11,6 +11,7 @@ import Settings from '@/pages/Settings';
 import Subscription from '@/pages/Subscription';
 import { DashboardLayout } from '@/components/layout/DashboardLayout';
 import { useAuth } from '@/contexts/AuthContext';
+import { ThemeProvider } from '@/components/theme/theme-provider';
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
@@ -28,32 +29,34 @@ function PrivateRoute({ children }: { children: React.ReactNode }) {
 
 function App() {
   return (
-    <Router>
-      <AuthProvider>
-        <UserSettingsProvider>
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route
-              path="/dashboard"
-              element={
-                <PrivateRoute>
-                  <DashboardLayout />
-                </PrivateRoute>
-              }
-            >
-              <Route index element={<Dashboard />} />
-              <Route path="assets" element={<Assets />} />
-              <Route path="analytics" element={<Analytics />} />
-              <Route path="settings" element={<Settings />} />
-              <Route path="subscription" element={<Subscription />} />
-            </Route>
-            <Route path="/" element={<Navigate to="/dashboard" />} />
-          </Routes>
-          <Toaster />
-        </UserSettingsProvider>
-      </AuthProvider>
-    </Router>
+    <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
+      <Router>
+        <AuthProvider>
+          <UserSettingsProvider>
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route
+                path="/dashboard"
+                element={
+                  <PrivateRoute>
+                    <DashboardLayout />
+                  </PrivateRoute>
+                }
+              >
+                <Route index element={<Dashboard />} />
+                <Route path="assets" element={<Assets />} />
+                <Route path="analytics" element={<Analytics />} />
+                <Route path="settings" element={<Settings />} />
+                <Route path="subscription" element={<Subscription />} />
+              </Route>
+              <Route path="/" element={<Navigate to="/dashboard" />} />
+            </Routes>
+            <Toaster />
+          </UserSettingsProvider>
+        </AuthProvider>
+      </Router>
+    </ThemeProvider>
   );
 }
 

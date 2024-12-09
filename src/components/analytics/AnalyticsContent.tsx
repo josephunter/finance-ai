@@ -11,8 +11,19 @@ export function AnalyticsContent({ assets }: AnalyticsContentProps) {
 
   return (
     <div className="space-y-8">
-      <PerformanceOverview assets={activeAssets} />
-      <PerformanceDetails assets={activeAssets} />
+      <div className="grid gap-4">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground">
+          Performance Overview
+        </h2>
+        <PerformanceOverview assets={activeAssets} />
+      </div>
+      
+      <div className="grid gap-4">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground">
+          Performance Details
+        </h2>
+        <PerformanceDetails assets={activeAssets} />
+      </div>
     </div>
   );
 }

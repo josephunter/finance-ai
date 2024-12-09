@@ -63,9 +63,11 @@ export function AddValueDialog({ asset, onValueAdded }: AddValueDialogProps) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" size="sm">
-          <PlusCircle className="h-4 w-4 mr-2" />
-          Add Value
+        <Button variant="outline" size="sm" className="bg-background">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4">
+            <PlusCircle className="h-full w-full" />
+          </div>
+          <span className="ml-6">Add Value</span>
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">

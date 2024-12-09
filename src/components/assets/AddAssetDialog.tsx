@@ -8,6 +8,7 @@ import { useUserSettings } from '@/contexts/UserSettingsContext';
 import { useToast } from '@/hooks/use-toast';
 import { Plus } from 'lucide-react';
 import { AssetForm, type AssetFormData } from './form/AssetForm';
+import { cn } from '@/lib/utils';
 
 interface AddAssetDialogProps {
   className?: string;
@@ -67,9 +68,16 @@ export function AddAssetDialog({ className, onAssetAdded }: AddAssetDialogProps)
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className={className}>
-          <Plus className="h-4 w-4 mr-2" />
-          Add Asset
+        <Button 
+          variant="default"
+          className={cn(
+            "flex items-center",
+            "dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700",
+            className
+          )}
+        >
+          <Plus className="h-4 w-4" />
+          <span className="ml-2">Add Asset</span>
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">

@@ -1,45 +1,41 @@
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { useAuth } from '@/contexts/AuthContext';
-import { useUserSettings } from '@/contexts/UserSettingsContext';
-import { CurrencySelect } from '@/components/currency/CurrencySelect';
-import { Navigation } from './Navigation';
-import { Menu, Wallet, LogOut } from 'lucide-react';
+import { UserNav } from "./UserNav"
+import { ThemeToggle } from "@/components/theme/theme-toggle"
+import { Wallet, Menu } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Navigation } from "./Navigation"
+import { useState } from "react"
 
 export function Navbar() {
-  const [open, setOpen] = useState(false);
-  const { logout } = useAuth();
-  const { settings } = useUserSettings();
+  const [open, setOpen] = useState(false)
 
   return (
-    <nav className="border-b bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16 items-center w-full">
-          <div className="flex-shrink-0 flex items-center">
-            <Sheet open={open} onOpenChange={setOpen}>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="md:hidden mr-2">
-                  <Menu className="h-5 w-5" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="left" className="p-0">
-                <Navigation onNavigate={() => setOpen(false)} />
-              </SheetContent>
-            </Sheet>
-            
-            <Wallet className="h-6 w-6 text-primary" />
-            <span className="ml-2 text-lg font-semibold">Asset Tracker</span>
-          </div>
-
-          <div className="flex-1 flex justify-end items-center space-x-4">
-            <CurrencySelect />
-            <Button variant="ghost" size="icon" onClick={logout}>
-              <LogOut className="h-5 w-5" />
+    <div className="border-b">
+      <div className="flex h-16 items-center px-4">
+        <Sheet open={open} onOpenChange={setOpen}>
+          <SheetTrigger asChild>
+            <Button variant="ghost" size="icon" className="bg-background md:hidden mr-2">
+              <div className="absolute w-4 h-4">
+                <Menu className="h-full w-full absolute top-0 left-0" />
+              </div>
+              <span className="sr-only">Open menu</span>
             </Button>
-          </div>
+          </SheetTrigger>
+          <SheetContent side="left" className="p-0">
+            <Navigation onNavigate={() => setOpen(false)} />
+          </SheetContent>
+        </Sheet>
+
+        <div className="flex items-center">
+          <Wallet className="h-6 w-6 text-primary" />
+          <span className="ml-2 text-lg font-semibold">Asset Tracker</span>
+        </div>
+
+        <div className="ml-auto flex items-center space-x-4">
+          <ThemeToggle />
+          <UserNav />
         </div>
       </div>
-    </nav>
-  );
+    </div>
+  )
 }

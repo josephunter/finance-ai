@@ -6,6 +6,7 @@ import { AssetDistributionChart } from '@/components/dashboard/AssetDistribution
 import { IncomeStats } from '@/components/dashboard/IncomeStats';
 import { IncomeDistributionChart } from '@/components/dashboard/IncomeDistributionChart';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
+import { PageHeader } from "@/components/ui/page-header";
 
 export default function Dashboard() {
   const { user } = useAuth();
@@ -27,14 +28,11 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="py-6 space-y-6">
-      <div>
-        <h1 className="text-2xl font-semibold text-gray-900">Dashboard</h1>
-        <p className="mt-1 text-sm text-gray-500">
-          Welcome back, {user?.email}
-        </p>
-      </div>
-
+    <div className="space-y-6">
+      <PageHeader
+        title="Dashboard"
+        description="Overview of your portfolio and recent activities"
+      />
       <AssetStats assets={assets} />
       <IncomeStats assets={assets} />
       

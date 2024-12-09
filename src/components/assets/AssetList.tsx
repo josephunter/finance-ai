@@ -22,15 +22,17 @@ export function AssetList({ assets, onDelete }: AssetListProps) {
           variant={viewMode === 'grid' ? 'default' : 'outline'}
           size="icon"
           onClick={() => setViewMode('grid')}
+          className="relative"
         >
-          <LayoutGrid className="h-4 w-4" />
+          <LayoutGrid className="h-4 w-4 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
         </Button>
         <Button
           variant={viewMode === 'list' ? 'default' : 'outline'}
           size="icon"
           onClick={() => setViewMode('list')}
+          className="relative"
         >
-          <List className="h-4 w-4" />
+          <List className="h-4 w-4 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
         </Button>
       </div>
 

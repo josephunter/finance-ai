@@ -154,14 +154,19 @@ export function AssetCard({ asset, onDelete, onStatusChange }: AssetCardProps) {
             <Button
               variant="outline"
               size="sm"
+              className="bg-background"
               onClick={() => setIsEditing(true)}
             >
-              <Pencil className="h-4 w-4" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4">
+                <Pencil className="h-full w-full" />
+              </div>
             </Button>
             <AlertDialog>
               <AlertDialogTrigger asChild>
-                <Button variant="outline" size="sm">
-                  <Trash2 className="h-4 w-4 text-red-500" />
+                <Button variant="outline" size="sm" className="bg-background">
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4">
+                    <Trash2 className="h-full w-full text-red-500" />
+                  </div>
                 </Button>
               </AlertDialogTrigger>
               <AlertDialogContent>
