@@ -151,7 +151,7 @@ export function AssetForm({ defaultValues, onSubmit, submitLabel }: AssetFormPro
           )}
         />
         
-        <Button type="submit" className="w-full bg-background">
+        <Button variant="outline" type="submit" className="w-full bg-background">
           {submitLabel}
         </Button>
       </form>
